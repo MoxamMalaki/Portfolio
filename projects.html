@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaki Moxam - Projects</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6b9eff;
+        }
+
+        .nav-links a.active {
+            color: #6b9eff;
+        }
+
+        /* Projects Section */
+        .projects-section {
+            flex: 1;
+            padding: 3rem 5rem 5rem 5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #b8b8b8;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .section-header .highlight {
+            color: #6b9eff;
+        }
+
+        /* Filter Buttons */
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.75rem 2rem;
+            background-color: transparent;
+            color: #ffffff;
+            border: 2px solid #333;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background-color: #6b9eff;
+            border-color: #6b9eff;
+            color: #000000;
+        }
+
+        /* Projects Grid - FIXED TO 3 COLUMNS ON DESKTOP */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #222;
+            opacity: 1;
+            transform: scale(1);
+        }
+        
+        .project-card.hiding {
+            opacity: 0;
+            transform: scale(0.85);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px) scale(1);
+            box-shadow: 0 20px 40px rgba(107, 158, 255, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(107, 158, 255, 0.1) 0%, transparent 70%);
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: fill;
+            position: relative;
+            z-index: 1;
+        }
+
+        .project-placeholder {
+            font-size: 4rem;
+            color: #6b9eff;
+            opacity: 0.3;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-category {
+            color: #6b9eff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .project-description {
+            color: #b8b8b8;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            padding: 0.4rem 0.8rem;
+            background-color: rgba(107, 158, 255, 0.1);
+            color: #6b9eff;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b9eff;
+            text-decoration: none;
+            font-weight: 600;
+            transition: gap 0.3s;
+        }
+
+        .project-link:hover {
+            gap: 1rem;
+        }
+
+        .project-link svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid #222;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 2rem 3rem;
+            }
+
+            .projects-section {
+                padding: 3rem 3rem 5rem 3rem;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .projects-section {
+                padding: 2rem;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .filter-buttons {
+                gap: 1rem;
+            }
+
+            .filter-btn {
+                padding: 0.6rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">Malaki.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="projects.html" class="active">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="projects-section">
+            <div class="section-header">
+                <h1>My <span class="highlight">Projects</span></h1>
+                <p>A collection of my creative work in UX design, video editing, graphic design, and web development. Each project represents a unique challenge and creative solution.</p>
+            </div>
+
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="ux">UX Design</button>
+                <button class="filter-btn" data-filter="video">Video Editing</button>
+                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+            </div>
+
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card" data-category="ux">
+                    <div class="project-image">
+                        <img src="img/ux_figma.png" alt="UX Design Project">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">UX Design</div>
+                        <h3 class="project-title">Recreational Centre Redesign</h3>
+                        <p class="project-description">Complete UX redesign of a recreational centre's digital experience, focusing on improving user booking flow, accessibility, and creating an intuitive interface for facility management.</p>
+                        <div class="project-tags">
+                            <span class="tag">Figma</span>
+                            <span class="tag">User Research</span>
+                            <span class="tag">Wireframing</span>
+                        </div>
+                        <a href="https://www.figma.com/design/dn42STdgtEOAw1fsgb9AdE/Personas?node-id=1-845&t=ahzrr2iqXblSo6ya-1" target="_blank" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card" data-category="video">
+                    <div class="project-image">
+                        <img src="img/Trailer_img.png" alt="Video Editing">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Video Editing</div>
+                        <h3 class="project-title">Folly Sound Trailer</h3>
+                        <p class="project-description">Produced and edited a high-impact commercial showcasing brand identity through dynamic storytelling and motion graphics.</p>
+                        <div class="project-tags">
+                            <span class="tag">Premiere Pro</span>
+                            <span class="tag">After Effects</span>
+                            <span class="tag">Color Grading</span>
+                        </div>
+                        <a href="https://youtu.be/Dq1dBgXreo0?si=QW_hndkJd9--HN7u" target="_blank" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card" data-category="graphic">
+                    <div class="project-image">
+                        <img src="img/Artboard 4.png" alt="Graphic Design">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Graphic Design</div>
+                        <h3 class="project-title">App Logo Design</h3>
+                        <p class="project-description">Developed a cohesive brand identity and vector-based app logo using Illustrator</p>
+                        <div class="project-tags">
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Branding</span>
+                            <span class="tag">Typography</span>
+                        </div>
+                        <a href="apps.html" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card" data-category="video">
+                    <div class="project-image">
+                        <img src="img/Interveiw_img.png" alt="Video Editing">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Video Editing</div>
+                        <h3 class="project-title">Professional Interview</h3>
+                        <p class="project-description">Edited a series of engaging short-form videos optimized for social media platforms with trendy effects and transitions.</p>
+                        <div class="project-tags">
+                            <span class="tag">Premiere Pro</span>
+                            <span class="tag">Motion Design</span>
+                            <span class="tag">Social Media</span>
+                        </div>
+                        <a href="https://www.youtube.com/watch?v=ujjZv_yP2tc" target="_blank" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card" data-category="graphic">
+                    <div class="project-image">
+                        <img src="img/iTunes.png" alt="Graphic Design">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Graphic Design</div>
+                        <h3 class="project-title">App Logo Design</h3>
+                        <p class="project-description">utilizing Illustrator's Asset Export to produce optimized, multi-size icons for mobile and desktop environments</p>
+                        <div class="project-tags">
+                            <span class="tag">Illustrator</span>
+                            <span class="tag">Branding</span>
+                            <span class="tag">Typography</span>
+                        </div>
+                        <a href="apps.html" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card" data-category="web">
+                    <div class="project-image">
+                        <img src="img/WebDev_final_img.png" alt="Web Development Project">
+                    </div>
+                    <div class="project-content">
+                        <div class="project-category">Web Development</div>
+                        <h3 class="project-title">UX/UI Website</h3>
+                        <p class="project-description">Built a full website based off of a UX design</p>
+                        <div class="project-tags">
+                            <span class="tag">HTML/CSS</span>
+                            <span class="tag">JavaScript</span>
+                            <span class="tag">Responsive</span>
+                        </div>
+                        <a href="https://moxammalaki.github.io/mtm6201-final/" target="_blank" class="project-link">
+                            View Project
+                            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Malaki Moxam. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+
+                const filter = button.getAttribute('data-filter');
+
+                projectCards.forEach((card, index) => {
+                    const category = card.getAttribute('data-category');
+                    
+                    // Add staggered animation delay
+                    card.style.transitionDelay = `${index * 0.05}s`;
+                    
+                    if (filter === 'all' || category === filter) {
+                        card.classList.remove('hiding');
+                        card.style.display = 'block';
+                    } else {
+                        card.classList.add('hiding');
+                        setTimeout(() => {
+                            if (card.classList.contains('hiding')) {
+                                card.style.display = 'none';
+                            }
+                        }, 500);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

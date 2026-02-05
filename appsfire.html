@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malaki Moxam - App Icon Design</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+
+        .container {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 5rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #6b9eff;
+        }
+
+        .nav-links a.active {
+            color: #6b9eff;
+        }
+
+        /* Showcase Section */
+        .showcase-section {
+            flex: 1;
+            padding: 3rem 5rem 5rem 5rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: #b8b8b8;
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .section-header .highlight {
+            color: #6b9eff;
+        }
+
+        .project-category-badge {
+            display: inline-block;
+            color: #6b9eff;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid #6b9eff;
+            border-radius: 25px;
+        }
+
+        /* Icons Grid */
+        .icons-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .icon-card {
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #222;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .icon-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(107, 158, 255, 0.2);
+            border-color: #6b9eff;
+        }
+
+        .icon-display {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 2rem;
+            position: relative;
+            min-height: 250px;
+        }
+
+        .icon-display::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(107, 158, 255, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .icon-display img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s;
+        }
+
+        .icon-card:hover .icon-display img {
+            transform: scale(1.05);
+        }
+
+        /* Different sizes for different icons */
+        .icon-display.phone img {
+            max-width: 180px;
+        }
+
+        .icon-display.tablet img {
+            max-width: 220px;
+        }
+
+        .icon-display.itunes img {
+            max-width: 260px;
+        }
+
+        .icon-info {
+            text-align: center;
+        }
+
+        .icon-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: #6b9eff;
+        }
+
+        .icon-subtitle {
+            font-size: 1rem;
+            color: #b8b8b8;
+            margin-bottom: 1rem;
+        }
+
+        .icon-dimensions {
+            display: inline-block;
+            padding: 0.5rem 1.2rem;
+            background-color: rgba(107, 158, 255, 0.1);
+            color: #6b9eff;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .icon-description {
+            color: #999;
+            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Project Details Section */
+        .project-details {
+            max-width: 900px;
+            margin: 4rem auto;
+            padding: 3rem;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0f0f0f 100%);
+            border-radius: 12px;
+            border: 1px solid #222;
+        }
+
+        .project-details h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #6b9eff;
+        }
+
+        .project-details p {
+            color: #b8b8b8;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 2rem;
+        }
+
+        .tag {
+            padding: 0.5rem 1rem;
+            background-color: rgba(107, 158, 255, 0.1);
+            color: #6b9eff;
+            border-radius: 6px;
+            font-size: 0.9rem;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b9eff;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 2rem;
+            transition: gap 0.3s;
+        }
+
+        .back-button:hover {
+            gap: 1rem;
+        }
+
+        .back-button svg {
+            width: 20px;
+            height: 20px;
+            transform: rotate(180deg);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            border-top: 1px solid #222;
+            margin-top: 4rem;
+        }
+
+        footer p {
+            color: #888;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 2rem 3rem;
+            }
+
+            .showcase-section {
+                padding: 3rem 3rem 5rem 3rem;
+            }
+
+            .section-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .icons-grid {
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1.5rem 2rem;
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+
+            .nav-links {
+                gap: 1.5rem;
+            }
+
+            .nav-links a {
+                font-size: 0.9rem;
+            }
+
+            .showcase-section {
+                padding: 2rem;
+            }
+
+            .section-header h1 {
+                font-size: 2rem;
+            }
+
+            .section-header p {
+                font-size: 1rem;
+            }
+
+            .icons-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .icon-card {
+                padding: 2rem;
+            }
+
+            .icon-display {
+                min-height: 200px;
+            }
+
+            .project-details {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav>
+            <div class="logo">Malaki.</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="projects.html">Projects</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contacts.html">Contacts</a></li>
+            </ul>
+        </nav>
+
+        <div class="showcase-section">
+            <div class="section-header">
+                <div class="project-category-badge">Graphic Design</div>
+                <h1>App <span class="highlight">Icon Design</span></h1>
+                <p>Multi-platform app icon design created with Adobe Illustrator, optimized for phone, tablet, and iTunes store displays with precise sizing and export settings.</p>
+            </div>
+
+            <div class="icons-grid">
+                <!-- Phone Icon -->
+                <div class="icon-card">
+                    <div class="icon-display phone">
+                        <!-- 🖼️ IMAGE PLACEMENT: Add your phone-sized app icon here
+                             Example: <img src="img/app-icon-phone.png" alt="Phone App Icon"> -->
+                        <img src="img/icon-white.png" alt="Phone App Icon">
+                    </div>
+                    <div class="icon-info">
+                        <h3 class="icon-title">Phone</h3>
+                        <p class="icon-subtitle">iOS & Android</p>
+                        <span class="icon-dimensions">180 x 180 px</span>
+                        <p class="icon-description">Optimized for mobile devices with clean lines and recognizable iconography at small sizes.</p>
+                    </div>
+                </div>
+
+                <!-- Tablet Icon -->
+                <div class="icon-card">
+                    <div class="icon-display tablet">
+                        <!-- 🖼️ IMAGE PLACEMENT: Add your tablet-sized app icon here
+                             Example: <img src="img/app-icon-tablet.png" alt="Tablet App Icon"> -->
+                        <img src="img/iPhone.png" alt="Tablet App Icon">
+                    </div>
+                    <div class="icon-info">
+                        <h3 class="icon-title">Tablet</h3>
+                        <p class="icon-subtitle">iPad & Android Tablets</p>
+                        <span class="icon-dimensions">167 x 167 px</span>
+                        <p class="icon-description">Medium-sized variant maintaining visual consistency across tablet displays and app stores.</p>
+                    </div>
+                </div>
+
+                <!-- iTunes Icon -->
+                <div class="icon-card">
+                    <div class="icon-display itunes">
+                        <!-- 🖼️ IMAGE PLACEMENT: Add your iTunes-sized app icon here
+                             Example: <img src="img/app-icon-itunes.png" alt="iTunes App Icon"> -->
+                        <img src="img/iTunes.png" alt="iTunes App Icon">
+                    </div>
+                    <div class="icon-info">
+                        <h3 class="icon-title">iTunes</h3>
+                        <p class="icon-subtitle">App Store Marketing</p>
+                        <span class="icon-dimensions">1024 x 1024 px</span>
+                        <p class="icon-description">High-resolution version for App Store display with maximum detail and visual impact.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Details -->
+            <div class="project-details">
+                <h2>Project Overview</h2>
+                <p>This project showcases a complete app icon design system created using Adobe Illustrator's Asset Export feature. The design maintains visual consistency across all three platform sizes while ensuring optimal display quality for each use case.</p>
+                
+                <p>The icon design process involved creating vector artwork that scales perfectly from the small 180px phone size to the large 1024px iTunes marketing asset. Special attention was paid to maintaining clarity, brand identity, and visual appeal at every size.</p>
+
+                <p>Using Illustrator's Asset Export panel, I configured multiple artboards to automatically generate all three icon sizes with proper naming conventions and file formats, streamlining the export process for future updates.</p>
+
+                <div class="project-tags">
+                    <span class="tag">Adobe Illustrator</span>
+                    <span class="tag">Icon Design</span>
+                    <span class="tag">Branding</span>
+                    <span class="tag">Asset Export</span>
+                    <span class="tag">Vector Graphics</span>
+                    <span class="tag">iOS Design</span>
+                    <span class="tag">App Store</span>
+                </div>
+
+                <a href="projects.html" class="back-button">
+                    <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
+                    </svg>
+                    Back to Projects
+                </a>
+            </div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Malaki Moxam. All rights reserved.</p>
+        </footer>
+    </div>
+</body>
+</html>
