@@ -33,6 +33,7 @@
             padding: 2rem 5rem;
         }
 
+        
         .logo {
             font-size: 1.8rem;
             font-weight: 700;
@@ -59,6 +60,10 @@
             color: #6b9eff;
         }
 
+        .nav-links a.active {
+            color: #6b9eff;
+        }
+
         /* Hero Section */
         .hero {
             flex: 1;
@@ -71,28 +76,28 @@
         .hero-content {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .hero-text h1 {
-            font-size: 4rem;
+            font-size: 5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             line-height: 1.1;
         }
 
         .hero-text h2 {
-            font-size: 2rem;
+            font-size: 2.5rem;
             color: #6b9eff;
             font-weight: 600;
-            margin-bottom: 1.5rem;
-            min-height: 2.5rem;
+            margin-bottom: 2rem;
+            min-height: 3rem;
         }
 
         .hero-text p {
             color: #b8b8b8;
-            font-size: 1rem;
-            line-height: 1.7;
+            font-size: 1.15rem;
+            line-height: 1.8;
             max-width: 600px;
         }
 
@@ -103,8 +108,8 @@
         }
 
         .btn {
-            padding: 1rem 2.5rem;
-            font-size: 1rem;
+            padding: 1.2rem 3rem;
+            font-size: 1.1rem;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
@@ -146,8 +151,8 @@
         }
 
         .social-icon {
-            width: 45px;
-            height: 45px;
+            width: 55px;
+            height: 55px;
             border: 2px solid #333;
             border-radius: 50%;
             display: flex;
@@ -156,7 +161,7 @@
             color: #6b9eff;
             text-decoration: none;
             transition: all 0.3s;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
         }
 
         .social-icon:hover {
@@ -256,8 +261,8 @@
         <nav>
             <div class="logo">Malaki.</div>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="services.html">Services</a></li>
                 <li><a href="projects.html">Projects</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contacts.html">Contacts</a></li>
@@ -309,7 +314,46 @@
             </div>
 
             <div class="hero-image">
-                <img src="/mnt/user-data/uploads/Portfollll.png" alt="Malaki Moxam">
+                <!-- 🖼️ HERO IMAGE: Replace the SVG below with your actual image -->
+                <!-- To add your image, replace this entire SVG with: <img src="img/your-image.png" alt="Malaki Moxam"> -->
+                <svg width="500" height="500" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Background Circle -->
+                    <circle cx="250" cy="250" r="200" fill="url(#gradient1)" opacity="0.1"/>
+                    
+                    <!-- Profile Silhouette -->
+                    <path d="M250 150 C280 150, 300 170, 300 200 C300 230, 280 250, 250 250 C220 250, 200 230, 200 200 C200 170, 220 150, 250 150 Z" fill="#6b9eff" opacity="0.8"/>
+                    <path d="M150 350 C150 300, 180 280, 250 280 C320 280, 350 300, 350 350 L350 400 L150 400 Z" fill="#6b9eff" opacity="0.6"/>
+                    
+                    <!-- Decorative Elements -->
+                    <circle cx="100" cy="100" r="30" fill="#6b9eff" opacity="0.2">
+                        <animate attributeName="r" values="30;35;30" dur="3s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="400" cy="150" r="20" fill="#6b9eff" opacity="0.3">
+                        <animate attributeName="r" values="20;25;20" dur="2.5s" repeatCount="indefinite"/>
+                    </circle>
+                    <circle cx="380" cy="380" r="25" fill="#6b9eff" opacity="0.2">
+                        <animate attributeName="r" values="25;30;25" dur="2.8s" repeatCount="indefinite"/>
+                    </circle>
+                    
+                    <!-- Design Icons -->
+                    <g opacity="0.4">
+                        <!-- Code Brackets -->
+                        <path d="M80 220 L60 250 L80 280" stroke="#6b9eff" stroke-width="3" fill="none"/>
+                        <path d="M420 220 L440 250 L420 280" stroke="#6b9eff" stroke-width="3" fill="none"/>
+                        
+                        <!-- Pen Tool -->
+                        <path d="M380 80 L390 100 L370 100 Z" fill="#6b9eff"/>
+                        <line x1="380" y1="100" x2="380" y2="120" stroke="#6b9eff" stroke-width="2"/>
+                    </g>
+                    
+                    <!-- Gradient Definition -->
+                    <defs>
+                        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#6b9eff;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#4a7de0;stop-opacity:1" />
+                        </linearGradient>
+                    </defs>
+                </svg>
             </div>
         </div>
     </div>
